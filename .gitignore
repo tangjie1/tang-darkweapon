@@ -1,0 +1,41 @@
+# ─── 敏感配置（含 Cookie / API Key / Token）───────────────
+config/settings.json
+
+# ─── 扫描输出与日志 ─────────────────────────────────────
+output/
+logs/
+
+# ─── Python 缓存 ────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*$py.class
+
+# ─── 虚拟环境 ───────────────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# ─── 分析临时文件（根目录） ─────────────────────────────
+analyze_html.py
+analyze_page.py
+fofa2026.html
+fofa-analysis/
+
+# ─── 系统 / IDE ─────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ─── PyInstaller 打包产物 ────────────────────────────────
+dist/
+build/
+*.spec
