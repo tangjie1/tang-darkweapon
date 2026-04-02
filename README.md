@@ -118,13 +118,6 @@ python main.py
 
 ---
 
-## 🔒 安全说明
-
-`config/settings.json` 包含你的 FOFA Cookie 等敏感信息，**已被 `.gitignore` 排除，不会上传至 GitHub**。
-
-如不小心提交了敏感信息，请立即：
-1. 登录 FOFA 使旧 Cookie 失效
-2. 从 git 历史中彻底删除（`git filter-branch` 或 `BFG Repo-Cleaner`）
 
 ---
 
