@@ -1,5 +1,5 @@
 {
-  "fofa_cookie": "在这里填入你的 FOFA Cookie（登录后从浏览器 DevTools 复制）",
+  "fofa_cookie": "",
   "fofa_authorization": "",
   "nuclei_exe": "C:/path/to/nuclei.exe",
   "nuclei_template_dir": "C:/path/to/nuclei-templates",
