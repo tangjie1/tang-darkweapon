@@ -149,3 +149,5 @@ python main.py
 ## 📄 License
 
 MIT License — 详见 [LICENSE](LICENSE)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/47503c5a-10a9-4c48-a7cb-40a4952ffcc8" />
+<img width="1920" height="1080" alt="_cgi-bin_mmwebwx-bin_webwxgetmsgimg__ MsgID=1206142898001846034 skey=@crypt_1e147aac_cdb940c476741532f1e2f738a4426eb2 mmweb_appid=wx_webfilehelper" src="https://github.com/user-attachments/assets/f5513644-5688-4df4-8a11-9fdd1205e976" />
