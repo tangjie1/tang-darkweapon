@@ -212,6 +212,7 @@ class NucleiSettingsDialog(QDialog):
         group = QGroupBox("【 路径配置 】")
         grid = QVBoxLayout(group)
 
+        # EXE 路径
         exe_row = QHBoxLayout()
         exe_lbl = QLabel("Nuclei EXE:")
         exe_lbl.setFixedWidth(110)
@@ -225,6 +226,7 @@ class NucleiSettingsDialog(QDialog):
         exe_row.addWidget(browse_exe)
         grid.addLayout(exe_row)
 
+        # 模板目录
         tmpl_row = QHBoxLayout()
         tmpl_lbl = QLabel("模板目录:")
         tmpl_lbl.setFixedWidth(110)
@@ -238,6 +240,7 @@ class NucleiSettingsDialog(QDialog):
         tmpl_row.addWidget(browse_tmpl)
         grid.addLayout(tmpl_row)
 
+        # 输出目录
         out_row = QHBoxLayout()
         out_lbl = QLabel("结果输出目录:")
         out_lbl.setFixedWidth(110)
@@ -304,9 +307,11 @@ class MainWindow(QMainWindow):
         self.create_main_ui()
         self.apply_hacker_theme()
 
+    # ── 菜单 ──────────────────────────────────────
     def create_menu(self):
         menubar = self.menuBar()
 
+        # ── 工具 ──
         tools_menu = menubar.addMenu("工具(T)")
 
         cookie_action = QAction("Fofa Cookie 设置", self)
@@ -326,11 +331,13 @@ class MainWindow(QMainWindow):
         exit_action.triggered.connect(self.close)
         tools_menu.addAction(exit_action)
 
+        # ── 帮助 ──
         help_menu = menubar.addMenu("帮助(H)")
         about_action = QAction("关于", self)
         about_action.triggered.connect(self.show_about)
         help_menu.addAction(about_action)
 
+    # ── 主 UI ─────────────────────────────────────
     def create_main_ui(self):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
@@ -340,15 +347,19 @@ class MainWindow(QMainWindow):
 
         self.tab_widget = QTabWidget()
 
+        # ─ Tab 1: Fofa 扫描 ─
         self.fofa_tab = FofaScanTab(self.config)
         self.tab_widget.addTab(self.fofa_tab, "🔍 Fofa 扫描")
 
+        # ─ Tab 2: Nuclei 扫描 ─
         self.nuclei_tab = NucleiTab(self.config)
+        # 联动：nuclei tab 请求切换时跳到 tab 1（nuclei）
         self.nuclei_tab.request_switch_tab.connect(
             lambda: self.tab_widget.setCurrentIndex(1)
         )
         self.tab_widget.addTab(self.nuclei_tab, "⚡ Nuclei 扫描")
 
+        # 联动：把 fofa_tab 的"发送到 Nuclei"信号接上
         self.fofa_tab.send_to_nuclei.connect(self._receive_fofa_targets)
 
         layout.addWidget(self.tab_widget)
@@ -357,9 +368,11 @@ class MainWindow(QMainWindow):
         self.statusBar().setStyleSheet("color: #00ff41;")
 
     def _receive_fofa_targets(self, targets: list):
+        """FOFA 发送资产到 Nuclei"""
         self.nuclei_tab.add_targets(targets)
         self.tab_widget.setCurrentIndex(1)
 
+    # ── 样式 ──────────────────────────────────────
     def apply_hacker_theme(self):
         self.setStyleSheet(HACKER_STYLESHEET)
         font = QFont("Consolas", 10)
@@ -416,12 +429,14 @@ class MainWindow(QMainWindow):
             }
         """)
 
+    # ── 对话框 ────────────────────────────────────
     def show_cookie_dialog(self):
         CookieDialog(self.config, self).exec()
 
     def show_nuclei_settings(self):
         dlg = NucleiSettingsDialog(self.config, self)
         if dlg.exec():
+            # 刷新 nuclei tab 的配置
             self.nuclei_tab._load_config()
 
     def show_about(self):
@@ -436,6 +451,9 @@ class MainWindow(QMainWindow):
         )
 
 
+# ──────────────────────────────────────────────────────────
+#  主函数
+# ──────────────────────────────────────────────────────────
 def main():
     Path("config").mkdir(exist_ok=True)
     Path("output").mkdir(exist_ok=True)
