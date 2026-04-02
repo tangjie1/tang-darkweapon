@@ -25,7 +25,7 @@
 
 ### 🔍 FOFA 爬取模块
 | 功能 | 说明 |
-|------|------|
+:|------|------|
 | FOFA 搜索 | 支持完整 FOFA 语法，自动 Base64 编码 |
 | 分页爬取 | 可设置起止页，一键获取总页数 |
 | 反爬间隔 | 可配置随机延迟（默认 3~6s），避免封 IP |
@@ -36,7 +36,7 @@
 
 ### ⚡ Nuclei 扫描模块
 | 功能 | 说明 |
-|------|------|
+:|------|------|
 | 可视化配置 | 模板路径、输出目录、代理等图形化配置 |
 | 模板树形浏览 | 异步加载模板目录，支持搜索/勾选/右键编辑 |
 | 实时输出 | 扫描结果实时彩色展示，按严重级别分色 |
@@ -71,7 +71,7 @@ pip install -r requirements.txt
 ### 配置
 
 ```bash
-# 复制配置模板
+# 复制配置模板（重要！）
 copy config\settings.json.example config\settings.json
 ```
 
@@ -117,6 +117,14 @@ python main.py
 ```
 
 ---
+
+## 🔒 安全说明
+
+`config/settings.json` 包含你的 FOFA Cookie 等敏感信息，**已被 `.gitignore` 排除，不会上传至 GitHub**。
+
+如不小心提交了敏感信息，请立即：
+1. 登录 FOFA 使旧 Cookie 失效
+2. 从 git 历史中彻底删除（`git filter-branch` 或 `BFG Repo-Cleaner`）
 
 ---
 
